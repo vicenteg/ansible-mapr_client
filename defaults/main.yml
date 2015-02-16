@@ -1,0 +1,6 @@
+---
+# defaults file for mapr-client
+
+mapr_cluster_name: my.cluster.com
+
+proxy_env: { }
