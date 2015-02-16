@@ -2,5 +2,5 @@
 # defaults file for mapr-client
 
 mapr_cluster_name: my.cluster.com
-
+hive_metastore_host: "{{groups['hiveserver'][0]}}"
 proxy_env: { }
