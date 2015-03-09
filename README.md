@@ -11,7 +11,7 @@ Role Variables
 --------------
 
 ```
-mapr_cluster_name:
+cluster_name:
 hive_metastore_host:
 proxy_env:
   http_proxy: http://1.2.3.4:3128
