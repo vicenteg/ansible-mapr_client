@@ -6,12 +6,12 @@
   environment: proxy_env
 
 - name: install hive and pig
-  yum: name={{item}} state=present
+  yum: name="{{item}}" state=present
   sudo: yes
   sudo_user: root
   with_items:
-    - mapr-hive
-    - mapr-pig
+    - "mapr-hive-{{hive_version}}*"
+    - "mapr-pig-{{pig_version}}*"
   environment: proxy_env
 
 - name: store the path to hive
@@ -20,7 +20,7 @@
 
 - name: configure metastore
   sudo: yes
-  sudo_user: '{{mapr_admin_username}}'
+  sudo_user: root
   hadoop_properties:
     file: "{{hive_home.stdout}}/conf/hive-site.xml"
     name: "hive.metastore.uris" 
