@@ -5,17 +5,27 @@
   sudo_user: root
   environment: proxy_env
 
-- name: install hive and pig
+- name: install hive
   yum: name={{item}} state=present
   sudo: yes
   sudo_user: root
   with_items:
-    - mapr-hive
-    - mapr-pig
+    - mapr-hive-{{hive_version}}
+  when: hive_enabled
+  environment: proxy_env
+
+- name: install pig
+  yum: name={{item}} state=present
+  sudo: yes
+  sudo_user: root
+  with_items:
+    - mapr-pig-{{pig_version}}
+  when: pig_enabled
   environment: proxy_env
 
 - name: store the path to hive
   shell: rpm -ql mapr-hive  | head -2 | tail -1
+  when: hive_enabled
   register: hive_home
 
 - name: configure metastore
@@ -26,3 +36,4 @@
     name: "hive.metastore.uris" 
     value: "thrift://{{hostvars[hive_metastore_host].ansible_default_ipv4.address}}:9083" 
     state: present
+  when: hive_enabled

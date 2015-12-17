@@ -3,4 +3,6 @@
 
 cluster_name: my.cluster.com
 hive_metastore_host: "{{groups['hiveserver'][0]}}"
+hive_version: 1.0*
+pig_version: 0.14*
 proxy_env: { }
