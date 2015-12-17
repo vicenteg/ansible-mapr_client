@@ -30,7 +30,7 @@
 
 - name: configure metastore
   sudo: yes
-  sudo_user: '{{mapr_admin_username}}'
+  sudo_user: root
   hadoop_properties:
     file: "{{hive_home.stdout}}/conf/hive-site.xml"
     name: "hive.metastore.uris" 
