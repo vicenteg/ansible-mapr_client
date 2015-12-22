@@ -10,7 +10,7 @@
   sudo: yes
   sudo_user: root
   with_items:
-    - mapr-hive-{{hive_version}}
+    - mapr-hive-{{hive_version}}.{{hive_build}}
   when: hive_enabled
   environment: proxy_env
 
