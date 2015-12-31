@@ -27,6 +27,7 @@
   shell: rpm -ql mapr-hive  | head -2 | tail -1
   when: hive_enabled
   register: hive_home
+  changed_when: false
 
 - name: configure metastore
   sudo: yes
