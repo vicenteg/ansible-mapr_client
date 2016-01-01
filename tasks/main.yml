@@ -19,7 +19,7 @@
   sudo: yes
   sudo_user: root
   with_items:
-    - mapr-pig-{{pig_version}}
+    - mapr-pig-{{pig_version}}.{{pig_build}}
   when: pig_enabled
   environment: proxy_env
 
