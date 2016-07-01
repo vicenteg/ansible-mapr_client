@@ -1,14 +1,14 @@
 ---
 - name: install mapr-client
   yum: name=mapr-client state=present
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   environment: proxy_env
 
 - name: install hive
   yum: name={{item}} state=present
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   with_items:
     - mapr-hive-{{hive_version}}.{{hive_build}}
   when: hive_enabled
@@ -16,8 +16,8 @@
 
 - name: install pig
   yum: name={{item}} state=present
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   with_items:
     - mapr-pig-{{pig_version}}.{{pig_build}}
   when: pig_enabled
@@ -30,8 +30,8 @@
   changed_when: false
 
 - name: configure metastore
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   hadoop_properties:
     file: "{{hive_home.stdout}}/conf/hive-site.xml"
     name: "hive.metastore.uris" 
