@@ -3,7 +3,6 @@
   yum: name=mapr-client state=present
   become: yes
   become_user: root
-  environment: proxy_env
 
 - name: install hive
   yum: name={{item}} state=present
@@ -12,7 +11,6 @@
   with_items:
     - mapr-hive-{{hive_version}}.{{hive_build}}
   when: hive_enabled
-  environment: proxy_env
 
 - name: install pig
   yum: name={{item}} state=present
@@ -21,7 +19,6 @@
   with_items:
     - mapr-pig-{{pig_version}}.{{pig_build}}
   when: pig_enabled
-  environment: proxy_env
 
 - name: store the path to hive
   shell: rpm -ql mapr-hive  | head -2 | tail -1
